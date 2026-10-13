@@ -1,16 +1,15 @@
 class Gwm < Formula
   desc "Open and tile Ghostty windows in a grid"
   homepage "https://github.com/tgriek/ghostty-window-manager"
-  url "https://github.com/tgriek/ghostty-window-manager/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "4bff1f33d662d024fe7b2d67b25d971847f185206f8d1162dc5fee08059696a5"
+  url "https://github.com/tgriek/ghostty-window-manager/releases/download/v0.1.0/gwm-0.1.0-macos-universal.tar.gz"
+  sha256 "728da32470767280f9aa8dc660c027206a9d365d2f44a824095aec090975e536"
   license "MIT"
 
-  depends_on xcode: ["16.0", :build]
   depends_on macos: :sonoma
 
+  # Prebuilt universal (arm64 + x86_64) binary from `make dist`, so no Xcode is needed.
   def install
-    system "swift", "build", "--disable-sandbox", "-c", "release"
-    bin.install ".build/release/gwm"
+    bin.install "gwm"
   end
 
   def caveats
